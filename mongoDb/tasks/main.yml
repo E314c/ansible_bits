@@ -1,0 +1,25 @@
+---
+- include: removeUbuntuMongo.yml
+
+- name: add apt key for mongoDb
+  apt_key: url=https://www.mongodb.org/static/pgp/server-3.6.asc
+
+- name: add repo for mongoDb
+  apt_repository:
+    repo: 'deb https://repo.mongodb.org/apt/ubuntu precise/mongodb-org/3.6 multiverse {{ ansible_distribution_release }} main'
+    update_cache: yes
+
+- name: install mongoDb server (and dependencies)
+  apt: name=mongodb-org
+
+- name: Patch the systemd script in
+  copy:
+      src: mongod.service
+      dest: /lib/systemd/system/mongod.service
+      mode: 0777
+
+- name: reload systemd
+  systemd:
+    state: started
+    daemon_reload: yes
+    name: mongod

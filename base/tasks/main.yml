@@ -1,0 +1,11 @@
+---
+- name: Update the apt cache
+  apt: update_cache=yes
+
+- name: Upgrade current packages
+  apt: upgrade=dist
+
+- include: ui.yml
+- include: coreCli.yml
+- include: maven.yml
+- include: nodeJs.yml

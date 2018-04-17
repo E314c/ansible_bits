@@ -1,0 +1,10 @@
+- name: add apt key for DockerStore
+  apt_key: url=https://download.docker.com/linux/ubuntu/gpg
+
+- name: add repo for Docker
+  apt_repository:
+    repo: 'deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable'
+    update_cache: yes
+
+- name: install Docker-CE
+  apt: name=docker-ce

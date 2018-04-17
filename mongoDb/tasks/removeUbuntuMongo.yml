@@ -1,0 +1,6 @@
+- name: remove any unbuntu versions of mongoDb
+  apt: name={{ item }} state=absent
+  with_items:
+    - mongodb
+    - mongodb-server
+    - mongodb-clients

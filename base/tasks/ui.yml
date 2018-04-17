@@ -1,0 +1,19 @@
+- name: Install a light ubuntu-desktop (if you need a UI)
+  apt:
+    name: lubuntu-desktop
+    state: present
+    update_cache: yes
+    install_recommends: no  #'yes' if you want extra applications installed
+
+# note: for some reason installing this stops SSHd booting on startup.
+# so we re-add it to init.d scripts
+- name: make sure ssh daemon is enabled on startup
+  service:
+    name: ssh
+    enabled: yes
+    state: started
+
+# EXTRA NOTE:
+# This still doesn't work. Will probably have to look into a system that
+# manually installs just the bits of a UI I need, then I can boot it
+# by running a command ( i'd set it as non-default)

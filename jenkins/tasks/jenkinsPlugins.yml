@@ -1,0 +1,3 @@
+- name: Install OWASP dependency check plugin
+  jenkins_plugin:
+    name: dependency-check-jenkins-plugin

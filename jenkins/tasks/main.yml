@@ -1,0 +1,8 @@
+- name: install git
+  apt: name=git state=present
+
+- name: install Java 8
+  apt: name=openjdk-8-jdk state=present
+
+- include: firewall.yml
+- include: jenkins.yml
