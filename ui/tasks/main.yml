@@ -1,0 +1,19 @@
+---
+- name: Install virtual box guest kernel modules
+  apt:
+    name: virtualbox-guest-dkms
+    state: present
+    
+- name: Install Virtual box guest additions
+  apt:
+    name: virtualbox-guest-additions-iso
+    state: present
+    update_cache: yes
+
+# You can swap this out for your prefered desktop 
+- name: Install a ubuntu-desktop (for better UI)
+  apt:
+    name: ubuntu-desktop
+    state: present
+    update_cache: yes
+    install_recommends: no  #'yes' if you want extra applications installed
